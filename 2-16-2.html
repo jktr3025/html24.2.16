@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul, ol , li{
+            list-style: none;
+        }
+        section{
+            height: 100vh;
+            background-color: lightskyblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .layer{
+            width: 80%;
+            height: 800px;
+            border: 3px solid #333;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+        }
+        .layer .fix{
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 50px;
+            background-color: #fff;
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            z-index: 6;
+        }
+        .layer .fix .close{
+            padding: 0 20px;
+        }
+
+        .layer_pop{
+            width: 100%;
+            height: 800px;
+            overflow-y: scroll;
+        }
+        .layer_pop .list {
+
+        }
+        .layer_pop .list li{
+            width: 100%;
+            height: 800px;
+            text-align: center;
+            padding-top: 150px;
+            font-size: 100px;
+            background-color: beige;
+        }
+        .pdfbox{
+            width: 500px;
+            height: 300px;
+            background-color: lightcoral;
+            text-align: center;
+            line-height: 300px;
+            font-size: 30px;
+            margin: 100px auto;
+            cursor: pointer;
+        }
+        .pdfimg{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 50;
+            display: none;
+        }
+        .iflayer{
+            position: relative;
+            width: 1600px;
+            height: 800px;
+            margin: 0 auto;
+        }
+        .pdfclose{
+            position: absolute;
+            z-index: 100;
+            right: 125px;
+            top: 20px;
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            display: none;
+        }
+    </style>
+    <script src="script/jquery-3.7.1.js"></script>
+    <script lang="java">
+        $(function(){
+            $(".close").click(function(){
+                $(".layer").hide()
+            })//
+            $(".click").click(function(){
+                $(".layer").show()
+            })//
+
+            $(".pdf").click(function(){
+                $(".pdfimg, .pdfclose").show()
+            })//
+
+            $(".pdfclose").click(function(){
+                $(".pdfimg, .pdfclose").hide()
+            })
+
+
+
+
+        })//jquery
+    </script>
+</head>
+<body>
+    <section>
+        <button class="click">버튼</button>
+    </section>
+
+        <div class="layer">
+            <div class="fix">
+                <button class="close">닫기</button>
+            </div><!-- fix -->
+
+            <div class="layer_pop">
+                <ul class="list">
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>7</li>
+                    <li>8</li>
+                    <li>9</li>
+                    <li>10</li>
+                </ul><!-- list -->
+            </div><!-- layer_pop -->
+        </div><!-- layer -->
+
+        <div class="pdfbox">
+            <p class="pdf">PDF 포트폴리오 보러가기</p>
+        </div><!-- pdfbox -->
+        <div class="iflayer">
+            <iframe src="E-3.pdf" width="1600" height="800" class="pdfimg"></iframe>
+            <button class="pdfclose">X</button>
+        </div><!-- iflayer -->
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script/jquery-3.7.1.js"></script>
+    <script src="script/jquery-ui.js"></script>
+    <script lang="java">
+        $(function(){
+            $(".bar").draggable({
+                axis:"X", 
+                containment:".scroll_bar"
+            })//draggable
+
+
+            $(".bar").bind("drag", function(){
+                img_move();
+            })//
+
+            function img_move(){
+                //img 533 400 bar 50     
+                //400px-50px인 350px 만큼만 움직일 수 있음
+                var bar_left = parseInt( $(".bar").css("left") );
+                console.log(bar_left)
+                // 133은 원래 이미지 가로 사이즈 533에서 보여지는 가로 400 뺀 값
+                var pos = (bar_left * - 133) / 350 ;
+                console.log(pos);
+                $(".img_area2").css({left:pos + "px"});
+            }//
+
+        })//jquery
+    </script>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #wrap{}
+        #wrap h1{
+            text-align: center;
+            line-height: 2;
+        }
+        .box{
+            width: 400px;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+        .img_area{
+            height: 200px;
+            overflow: auto;
+        }
+        .img_area::-webkit-scrollbar{
+            width: 10px;
+        }        
+        .img_area::-webkit-scrollbar-thumb{
+            background-color: hotpink;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+        .img_area::-webkit-scrollbar-track{
+            background-color: lightslategray;
+            border-radius: 10px;
+            box-shadow: inset 1px 1px 3px #fff;
+        }
+        .box2{
+            width: 400px;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+        .img_area2{
+            height: 360px;
+            position: relative;
+        }
+        .scroll_bar{
+
+            width: 100%;
+            height: 20px;
+            background-color: #777;
+        }
+        .bar{
+            width: 50px;
+            height: 20px;
+            background-color: brown;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <h1>Scroll bar</h1>
+        <div class="box">
+            <div class="img_area">
+                <img src="img/slide1.533_360.jpg" alt="slide">
+            </div><!-- img_area -->
+        </div><!-- box -->
+
+        <div class="box2">
+            <div class="img_area2">
+                <img src="img/slide1.533_360.jpg" alt="slide">
+            </div><!-- img_area2 -->
+            <div class="scroll_bar">
+                <div class="bar"></div>
+            </div><!-- scroll_bar -->
+        </div><!-- box2 -->
+
+
+
+
+    </div><!-- wrap -->
+
+
+
+
+</body>
+</html>
